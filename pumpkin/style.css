@@ -1,0 +1,119 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #7e00ab 0%, black 100%);
+}
+
+.flames {
+  position: relative;
+  width: 50px;
+  top: 35px;
+}
+
+.cube-perspective {
+  display: flex;
+  justify-content: center;
+  width: calc(100px * 1.5);
+  height: calc(100px * 1.5);
+  perspective: 800px;
+  perspective-origin: center;
+}
+.cube-perspective.from-bottom {
+  perspective-origin: 50% 300px;
+}
+.cube-perspective.from-top {
+  perspective-origin: 50% -100px;
+}
+
+.cube {
+  display: block;
+  position: relative;
+  top: calc(100px / 2);
+  width: 100px;
+  transform-style: preserve-3d;
+}
+
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+.face.back {
+  transform: translateZ(calc(-50px)) rotateY(180deg);
+}
+.face.right {
+  transform: rotateY(-270deg) translateX(calc(50px));
+  transform-origin: top right;
+}
+.face.left {
+  transform: rotateY(270deg) translateX(calc(-50px));
+  transform-origin: center left;
+}
+.face.top {
+  transform: rotateX(-90deg) translateY(calc(-50px));
+  transform-origin: top center;
+}
+.face.bottom {
+  transform: rotateX(90deg) translateY(calc(50px));
+  transform-origin: bottom center;
+}
+.face.front {
+  transform: translateZ(calc(50px));
+}
+
+.rotate {
+  -webkit-animation: h-transform 10s linear infinite;
+          animation: h-transform 10s linear infinite;
+}
+
+.translate {
+  -webkit-animation: v-transform 3s ease-in-out infinite;
+          animation: v-transform 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes h-transform {
+  to {
+    transform: rotateY(0deg);
+  }
+  from {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes h-transform {
+  to {
+    transform: rotateY(0deg);
+  }
+  from {
+    transform: rotateY(360deg);
+  }
+}
+@-webkit-keyframes v-transform {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes v-transform {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
